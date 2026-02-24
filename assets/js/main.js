@@ -66,7 +66,7 @@
         if (!has(header)) return;
         header.classList.toggle('shadow-header', window.scrollY >= 50);
     }
-    window.addEventListener('scroll', handleShadowHeader);
+    window.addEventListener('scroll', handleShadowHeader, { passive: true });
     handleShadowHeader();
 
     /*=============== SHOW SCROLL UP ===============*/
@@ -74,39 +74,35 @@
         if (!has(scrollUpBtn)) return;
         scrollUpBtn.classList.toggle('show-scroll', window.scrollY >= 350);
     }
-    window.addEventListener('scroll', handleScrollUp);
+    window.addEventListener('scroll', handleScrollUp, { passive: true });
     handleScrollUp();
 
     /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
-    function scrollActive() {
-        const scrollY = window.pageYOffset;
-        const windowHeight = window.innerHeight;
-        const docHeight = document.documentElement.scrollHeight;
-        const atBottom = scrollY + windowHeight >= docHeight - 5;
-
-        sections.forEach((current, index) => {
-            const sectionHeight = current.offsetHeight;
-            const sectionTop = current.offsetTop - 58;
-            const sectionId = current.getAttribute('id');
-            const selector = `.nav__list a[href*="${sectionId}"]`;
-            const sectionLink = document.querySelector(selector);
-
-            if (!sectionLink) return;
-
-            const isLastSection = index === sections.length - 1;
-
-            let isActive;
-            if (atBottom) {
-                // No fundo da página, apenas o último link fica ativo
-                isActive = isLastSection;
-            } else {
-                isActive = scrollY > sectionTop && scrollY <= sectionTop + sectionHeight;
-            }
-
-            sectionLink.classList.toggle('active-link', isActive);
+    function setActiveLink(id) {
+        navLinks.forEach(link => {
+            link.classList.toggle('active-link', link.getAttribute('href') === `#${id}`);
         });
     }
-    window.addEventListener('scroll', scrollActive);
+
+    function scrollActive() {
+        // Offset dinâmico: 40% da altura do viewport.
+        // Em monitores grandes isso representa ~430px — ponto onde o usuário
+        // já está claramente "dentro" da seção. Em mobile (~700px) fica ~280px.
+        // Garante consistência em qualquer tamanho de tela.
+        const offset = window.innerHeight * 0.4;
+        let activeId = sections[0]?.getAttribute('id');
+
+        sections.forEach(section => {
+            const top = section.getBoundingClientRect().top;
+            if (top <= offset) {
+                activeId = section.getAttribute('id');
+            }
+        });
+
+        if (activeId) setActiveLink(activeId);
+    }
+
+    window.addEventListener('scroll', scrollActive, { passive: true });
     scrollActive();
 
     /*=============== PREVENT CLOSE WHEN CLICKING INSIDE MENU ===============*/
