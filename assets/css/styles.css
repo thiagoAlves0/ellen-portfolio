@@ -101,7 +101,14 @@ img {
   height: auto;
 }
 
-/*=============== REUSABLE CSS CLASSES ===============*/
+input,
+textarea,
+button {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
+
 .container {
   max-width: 1120px;
   margin-inline: 1.5rem;
@@ -342,6 +349,7 @@ img {
     font-size: var(--normal-font-size);
     font-weight: var(--font-medium);
     opacity: 1;
+    transition: color .3s;
   }
 
   .nav__link:hover {
@@ -765,13 +773,19 @@ img {
   color: var(--white-color);
 }
 
-.contact__form {
+/* Wrapper da coluna do formulário (antes era .contact__form div) */
+.contact__form-wrapper {
   display: grid;
   gap: 1.5rem;
   background-color: var(--container-color);
   padding: 2rem;
   border-radius: 20px;
   box-shadow: 0 8px 24px hsla(0, 0%, 0%, .05);
+}
+
+.contact__form {
+  display: grid;
+  gap: 1.5rem;
 }
 
 .contact__inputs {

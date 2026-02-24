@@ -18,6 +18,7 @@
         if (!has(navMenu)) return;
         navMenu.classList.add('show-menu');
         if (has(navOverlay)) navOverlay.classList.add('active');
+        if (has(navToggle)) navToggle.setAttribute('aria-expanded', 'true');
         document.body.style.overflow = 'hidden';
     }
 
@@ -25,6 +26,7 @@
         if (!has(navMenu)) return;
         navMenu.classList.remove('show-menu');
         if (has(navOverlay)) navOverlay.classList.remove('active');
+        if (has(navToggle)) navToggle.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
     }
 
@@ -78,16 +80,30 @@
     /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
     function scrollActive() {
         const scrollY = window.pageYOffset;
-        sections.forEach(current => {
+        const windowHeight = window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight;
+        const atBottom = scrollY + windowHeight >= docHeight - 5;
+
+        sections.forEach((current, index) => {
             const sectionHeight = current.offsetHeight;
             const sectionTop = current.offsetTop - 58;
             const sectionId = current.getAttribute('id');
             const selector = `.nav__list a[href*="${sectionId}"]`;
-            const sectionsClass = document.querySelector(selector);
+            const sectionLink = document.querySelector(selector);
 
-            if (sectionsClass) {
-                sectionsClass.classList.toggle('active-link', scrollY > sectionTop && scrollY <= sectionTop + sectionHeight);
+            if (!sectionLink) return;
+
+            const isLastSection = index === sections.length - 1;
+
+            let isActive;
+            if (atBottom) {
+                // No fundo da página, apenas o último link fica ativo
+                isActive = isLastSection;
+            } else {
+                isActive = scrollY > sectionTop && scrollY <= sectionTop + sectionHeight;
             }
+
+            sectionLink.classList.toggle('active-link', isActive);
         });
     }
     window.addEventListener('scroll', scrollActive);
@@ -134,6 +150,9 @@
         const contactMessage = document.getElementById('contact-message');
 
         if (contactForm && typeof emailjs !== 'undefined') {
+            // Inicializa o EmailJS com sua Public Key
+            emailjs.init('publicKey_xxx'); // ← substitua pela sua Public Key real
+
             contactForm.addEventListener('submit', (e) => {
                 e.preventDefault();
 
@@ -142,13 +161,14 @@
                     return;
                 }
 
-                emailjs.sendForm('service_xxx', 'template_xxx', '#contact-form', 'publicKey_xxx')
+                emailjs.sendForm('service_xxx', 'template_xxx', '#contact-form')
                     .then(() => {
                         alert('Mensagem enviada com sucesso!');
                         contactName.value = '';
                         contactEmail.value = '';
                         contactMessage.value = '';
-                    }, () => {
+                    })
+                    .catch(() => {
                         alert('Falha no envio. Tente novamente.');
                     });
             });
