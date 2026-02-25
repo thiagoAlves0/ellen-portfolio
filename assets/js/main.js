@@ -66,7 +66,7 @@
         if (!has(header)) return;
         header.classList.toggle('shadow-header', window.scrollY >= 50);
     }
-    window.addEventListener('scroll', handleShadowHeader, { passive: true });
+    window.addEventListener('scroll', handleShadowHeader);
     handleShadowHeader();
 
     /*=============== SHOW SCROLL UP ===============*/
@@ -74,35 +74,25 @@
         if (!has(scrollUpBtn)) return;
         scrollUpBtn.classList.toggle('show-scroll', window.scrollY >= 350);
     }
-    window.addEventListener('scroll', handleScrollUp, { passive: true });
+    window.addEventListener('scroll', handleScrollUp);
     handleScrollUp();
 
     /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
-    function setActiveLink(id) {
-        navLinks.forEach(link => {
-            link.classList.toggle('active-link', link.getAttribute('href') === `#${id}`);
-        });
-    }
-
     function scrollActive() {
-        // Offset dinâmico: 40% da altura do viewport.
-        // Em monitores grandes isso representa ~430px — ponto onde o usuário
-        // já está claramente "dentro" da seção. Em mobile (~700px) fica ~280px.
-        // Garante consistência em qualquer tamanho de tela.
-        const offset = window.innerHeight * 0.4;
-        let activeId = sections[0]?.getAttribute('id');
+        const scrollY = window.pageYOffset;
+        sections.forEach(current => {
+            const sectionHeight = current.offsetHeight;
+            const sectionTop = current.offsetTop - 58;
+            const sectionId = current.getAttribute('id');
+            const selector = `.nav__list a[href*="${sectionId}"]`;
+            const sectionsClass = document.querySelector(selector);
 
-        sections.forEach(section => {
-            const top = section.getBoundingClientRect().top;
-            if (top <= offset) {
-                activeId = section.getAttribute('id');
+            if (sectionsClass) {
+                sectionsClass.classList.toggle('active-link', scrollY > sectionTop && scrollY <= sectionTop + sectionHeight);
             }
         });
-
-        if (activeId) setActiveLink(activeId);
     }
-
-    window.addEventListener('scroll', scrollActive, { passive: true });
+    window.addEventListener('scroll', scrollActive);
     scrollActive();
 
     /*=============== PREVENT CLOSE WHEN CLICKING INSIDE MENU ===============*/
@@ -123,9 +113,10 @@
 
         // Elementos principais
         sr.reveal('.home__content, .about__image, .services__card, .projects__card, .contact__content');
+        sr.reveal('.plans__card', { interval: 150 });
         sr.reveal('.home__image', { origin: 'bottom' });
         sr.reveal('.about__content', { origin: 'right' });
-        sr.reveal('.contact__form', { origin: 'left' });
+        sr.reveal('.contact__form-wrapper', { origin: 'left' });
 
         // Títulos das seções (agora com animação mais suave)
         sr.reveal('.section__title-1, .section__title-2', {

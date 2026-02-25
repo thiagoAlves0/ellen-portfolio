@@ -56,6 +56,9 @@
                   <a href="#services" class="nav__link">Serviços</a>
                </li>
                <li class="nav__item">
+                  <a href="#plans" class="nav__link">Planos</a>
+               </li>
+               <li class="nav__item">
                   <a href="#projects" class="nav__link">Depoimentos</a>
                </li>
                <li class="nav__item">
@@ -112,7 +115,7 @@
             </div>
 
             <div class="home__image">
-               <img src="assets/img/ellen-perfil.jpeg" alt="Ellen Maia" class="home__img">
+               <img src="assets/img/ellen-perfil.jpeg" alt="Ellen Maia" class="home__img" loading="eager">
                <div class="geometric-box"></div>
             </div>
          </div>
@@ -126,7 +129,7 @@
 
          <div class="about__container container grid">
             <div class="about__image">
-               <img src="assets/img/professor.webp" alt="Ellen Maia dando aula" class="about__img">
+               <img src="assets/img/professor.webp" alt="Ellen Maia dando aula" class="about__img" loading="lazy">
                <div class="geometric-box"></div>
             </div>
 
@@ -226,6 +229,97 @@
          </div>
       </section>
 
+      <!--==================== PLANS ====================-->
+      <section class="plans section" id="plans">
+         <h2 class="section__title-2">
+            <span>Planos.</span>
+         </h2>
+
+         <div class="plans__container container">
+
+            <!-- Plano Iniciante -->
+            <article class="plans__card">
+               <div class="plans__icon-wrap">
+                  <div class="plans__icon"><i class="ri-seedling-line"></i></div>
+               </div>
+               <h3 class="plans__name">Iniciante</h3>
+               <p class="plans__tagline">Primeiros passos no inglês.</p>
+               <div class="plans__pricing">
+                  <span class="plans__currency">R$</span>
+                  <span class="plans__price">120</span>
+               </div>
+               <p class="plans__period">por mês · 4 aulas de 60 min</p>
+               <div class="plans__divider"></div>
+               <ul class="plans__features">
+                  <li class="plans__feature"><i class="ri-check-line"></i> 1 aula por semana (60 min)</li>
+                  <li class="plans__feature"><i class="ri-check-line"></i> Gramática e vocabulário</li>
+                  <li class="plans__feature"><i class="ri-check-line"></i> Material didático incluso</li>
+                  <li class="plans__feature"><i class="ri-check-line"></i> Suporte via WhatsApp</li>
+                  <li class="plans__feature plans__feature--disabled"><i class="ri-close-line"></i> Aula experimental grátis</li>
+               </ul>
+               <a href="#contact" class="plans__button plans__button--outline">
+                  <i class="ri-send-plane-line"></i> Quero começar
+               </a>
+            </article>
+
+            <!-- Plano Intermediário (destaque) -->
+            <article class="plans__card plans__card--featured">
+               <div class="plans__icon-wrap">
+                  <span class="plans__badge">✦ Mais popular</span>
+                  <div class="plans__icon"><i class="ri-rocket-line"></i></div>
+               </div>
+               <h3 class="plans__name">Intermediário</h3>
+               <p class="plans__tagline">Evolução consistente, 2x por semana.</p>
+               <div class="plans__pricing">
+                  <span class="plans__currency">R$</span>
+                  <span class="plans__price">220</span>
+               </div>
+               <p class="plans__period">por mês · 8 aulas de 60 min</p>
+               <div class="plans__divider"></div>
+               <ul class="plans__features">
+                  <li class="plans__feature"><i class="ri-check-line"></i> 2 aulas por semana (60 min)</li>
+                  <li class="plans__feature"><i class="ri-check-line"></i> Conversação + gramática</li>
+                  <li class="plans__feature"><i class="ri-check-line"></i> Material didático incluso</li>
+                  <li class="plans__feature"><i class="ri-check-line"></i> Suporte via WhatsApp</li>
+                  <li class="plans__feature"><i class="ri-check-line"></i> Aula experimental grátis</li>
+               </ul>
+               <a href="#contact" class="plans__button plans__button--featured">
+                  <i class="ri-send-plane-line"></i> Quero começar
+               </a>
+            </article>
+
+            <!-- Plano Avançado -->
+            <article class="plans__card">
+               <div class="plans__icon-wrap">
+                  <div class="plans__icon"><i class="ri-trophy-line"></i></div>
+               </div>
+               <h3 class="plans__name">Avançado</h3>
+               <p class="plans__tagline">Fluência ou certificação internacional.</p>
+               <div class="plans__pricing">
+                  <span class="plans__currency">R$</span>
+                  <span class="plans__price">380</span>
+               </div>
+               <p class="plans__period">por mês · 12 aulas de 60 min</p>
+               <div class="plans__divider"></div>
+               <ul class="plans__features">
+                  <li class="plans__feature"><i class="ri-check-line"></i> 3 aulas por semana (60 min)</li>
+                  <li class="plans__feature"><i class="ri-check-line"></i> Prep. IELTS / TOEFL / Cambridge</li>
+                  <li class="plans__feature"><i class="ri-check-line"></i> Material didático incluso</li>
+                  <li class="plans__feature"><i class="ri-check-line"></i> Suporte prioritário 24h</li>
+                  <li class="plans__feature"><i class="ri-check-line"></i> Aula experimental grátis</li>
+               </ul>
+               <a href="#contact" class="plans__button plans__button--outline">
+                  <i class="ri-send-plane-line"></i> Quero começar
+               </a>
+            </article>
+
+         </div>
+         <p class="plans__note container">
+            <i class="ri-information-line"></i>
+            Aulas online ou presenciais em João Pessoa-PB. Valores personalizados para grupos.
+         </p>
+      </section>
+
       <!--==================== PROJECTS ====================-->
       <section class="projects section" id="projects">
          <h2 class="section__title-1">
@@ -235,7 +329,7 @@
          <div class="projects__container container grid">
             <article class="projects__card">
                <div class="projects__image">
-                  <img src="assets/img/testimonial-1.jpg" alt="Depoimento 1" class="projects__img">
+                  <img src="assets/img/testimonial-1.jpg" alt="Depoimento 1" class="projects__img" loading="lazy">
                </div>
                <div class="projects__content">
                   <h3 class="projects__subtitle">Carlos M. - Analista de Marketing</h3>
@@ -249,7 +343,7 @@
 
             <article class="projects__card">
                <div class="projects__image">
-                  <img src="assets/img/testimonial-2.jpg" alt="Depoimento 2" class="projects__img">
+                  <img src="assets/img/testimonial-2.jpg" alt="Depoimento 2" class="projects__img" loading="lazy">
                </div>
                <div class="projects__content">
                   <h3 class="projects__subtitle">Juliana F. - Estudante</h3>
@@ -262,7 +356,7 @@
 
             <article class="projects__card">
                <div class="projects__image">
-                  <img src="assets/img/testimonial-3.jpg" alt="Depoimento 3" class="projects__img">
+                  <img src="assets/img/testimonial-3.jpg" alt="Depoimento 3" class="projects__img" loading="lazy">
                </div>
                <div class="projects__content">
                   <h3 class="projects__subtitle">Rafael L. - Engenheiro</h3>
@@ -335,6 +429,9 @@
             </li>
             <li>
                <a href="#services" class="footer__link">Serviços</a>
+            </li>
+            <li>
+               <a href="#plans" class="footer__link">Planos</a>
             </li>
             <li>
                <a href="#contact" class="footer__link">Contato</a>
