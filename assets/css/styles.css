@@ -220,15 +220,17 @@ button {
 }
 
 .nav__logo-circle {
-  width: 32px;
-  height: 32px;
-  background-color: var(--first-color);
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--first-color), var(--second-color));
   color: var(--white-color);
   display: grid;
   place-items: center;
   border-radius: 50%;
-  font-size: 1.1rem;
+  font-size: .78rem;
   font-weight: var(--font-bold);
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px hsla(340, 90%, 55%, .30);
 }
 
 .nav__logo-name {
@@ -894,9 +896,10 @@ button {
 }
 
 /*=============== FOOTER ===============*/
+/*=============== FOOTER ===============*/
 .footer {
-  background-color: var(--first-color-dark);
-  padding-block: 2rem;
+  background-color: var(--first-color-darker);
+  padding-block: 2rem 1.5rem;
   margin-top: 4rem;
   border-radius: var(--border-radius-footer);
 }
@@ -904,34 +907,105 @@ button {
 .footer__container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  text-align: center;
+  gap: 1.25rem;
 }
 
-.footer__copy {
-  color: var(--white-color);
-  font-size: var(--small-font-size);
-  opacity: 0.9;
+/* ── Linha principal: logo + links ── */
+.footer__main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.footer__logo {
+  display: inline-flex;
+  align-items: center;
+  column-gap: .5rem;
+  text-decoration: none;
+}
+
+.footer__logo-circle {
+  width: 34px;
+  height: 34px;
+  background: linear-gradient(135deg, var(--first-color), var(--second-color));
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: .72rem;
+  font-weight: var(--font-bold);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.footer__logo-name {
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-semi-bold);
+  color: rgba(255,255,255,.85);
 }
 
 .footer__links {
   display: flex;
-  gap: 1.5rem;
+  align-items: center;
+  gap: 1.75rem;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .footer__link {
-  color: var(--white-color);
+  color: rgba(255,255,255,.50);
   font-size: var(--small-font-size);
-  transition: color .3s;
-  opacity: 0.8;
+  transition: color .25s;
+  text-decoration: none;
 }
 
 .footer__link:hover {
-  color: var(--second-color);
-  opacity: 1;
+  color: rgba(255,255,255,.90);
+}
+
+/* ── Divisor ── */
+.footer__divider {
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255,255,255,.10),
+    transparent);
+}
+
+/* ── Linha base ── */
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+.footer__copy {
+  color: rgba(255,255,255,.32);
+  font-size: var(--smaller-font-size);
+}
+
+.footer__dev {
+  font-size: var(--smaller-font-size);
+  color: rgba(255,255,255,.28);
+  text-decoration: none;
+  transition: color .3s;
+}
+
+.footer__dev span {
+  color: rgba(255,255,255,.45);
+  font-weight: var(--font-medium);
+  transition: color .3s;
+}
+
+.footer__dev:hover { color: rgba(255,255,255,.45); }
+
+.footer__dev:hover span {
+  background: linear-gradient(135deg, var(--first-color), var(--second-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /*=============== SCROLL BAR ===============*/
